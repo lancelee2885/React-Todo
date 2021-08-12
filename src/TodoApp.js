@@ -19,6 +19,7 @@ import TodoForm from "./TodoForm";
 function TodoApp({ initialTodos }) {
   const [todos, setTodos] = useState(initialTodos);
   
+
   /** add a new todo to list */
   function create(newTodo) {
     setTodos(t => [...t, newTodo]);
@@ -44,13 +45,13 @@ function TodoApp({ initialTodos }) {
     todoCopy = todoCopy.filter(t => t.id !== id);
     setTodos(todoCopy);
   }
-
   return (
       <main className="TodoApp">
         <div className="row">
 
           <div className="col-md-6">
             <EditableTodoList 
+              todos={todos}
               update={update}
               remove={remove}
             /> OR
@@ -61,12 +62,12 @@ function TodoApp({ initialTodos }) {
             (if no top todo, omit this whole section)
             <section className="mb-4">
               <h3>Top Todo</h3>
-              <TopTodo />
+              <TopTodo todos={todos}/>
             </section>
 
             <section>
               <h3 className="mb-3">Add Nü</h3>
-              <TodoForm handleSave={create}/>
+              <TodoForm initialFormData={{title:"New Todo" , description:"What to do", priority:2}} handleSave={create}/>
             </section>
           </div>
 

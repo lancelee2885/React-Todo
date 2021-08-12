@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { v4 as uuid } from "uuid";
 
 /** Form for adding.
  *
@@ -26,9 +26,8 @@ function TodoForm({ initialFormData, handleSave }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    // TODO: a fn rec.d from parent (TodoApp, EditableTodo)
-    // data should be passed onto parent
-    // addTodo(formData)
+    handleSave({...formData, id:uuid()} )
+
   }
 
   return (
