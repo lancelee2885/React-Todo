@@ -26,8 +26,8 @@ function TodoForm({ initialFormData, handleSave }) {
   /** Call parent function and clear form. */
   function handleSubmit(evt) {
     evt.preventDefault();
-    handleSave({...formData, id:uuid()} )
-
+    handleSave({...formData, id:uuid()}); //create or update
+    
   }
 
   return (
@@ -75,9 +75,7 @@ function TodoForm({ initialFormData, handleSave }) {
         </div>
         <button
           className="btn-primary rig btn btn-sm NewTodoForm-addBtn"
-          onClick={handleSave}
         >
-
           Gø!
         </button>
       </div>

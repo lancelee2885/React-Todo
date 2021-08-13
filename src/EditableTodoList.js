@@ -19,7 +19,7 @@ function EditableTodoList({todos, update, remove }) {
         todo={todo}
         update={update}
         remove={remove}
-  />);
+      />);
 
   return (
       <div>

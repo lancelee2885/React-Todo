@@ -12,19 +12,22 @@ import TodoForm from "./TodoForm";
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
-function EditableTodo({todo, update, remove}) {
+function EditableTodo({ todo, update, remove }) {
 
   /** Toggle if this is being edited */
   function toggleEdit() {
+    // let node = React.findDOMNode(this)
     return (
       <div>
-        <TodoForm />
+        {<TodoForm initialFormData={todo} handleSave={update} />}
       </div>
     )
   }
 
   /** Call remove fn passed to this. */
-  function handleDelete() { }
+  function handleDelete() {
+    remove(todo.id)
+  }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
   function handleSave(formData) {
@@ -32,6 +35,9 @@ function EditableTodo({todo, update, remove}) {
     // set
   }
 
+
+  // if toggleEdit is called > render the form
+  // else > render todo
   return (
     <div className="EditableTodo">
 
@@ -40,17 +46,17 @@ function EditableTodo({todo, update, remove}) {
       <TodoForm handleSave={handleSave} /> */}
 
       {/* OR */}
-
+      
       <div className="mb-3">
         <div className="float-right text-sm-right">
           <button
             className="EditableTodo-toggle btn-link btn btn-sm"
-            onClick={toggleEdit}>
+            onClick={()=>toggleEdit()}>
             Edit
           </button>
           <button
             className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-            onClick={handleDelete}>
+            onClick={() => handleDelete()}>
             Del
           </button>
         </div>
